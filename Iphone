@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<div>ID GAAGU WAA  :ipaddress</div> 
+
+
+
+
+
+
+
+<html lang="en" ><head>  <meta charset="UTF-8">  <title>CodePen - geting the client IP address</title>  </head><body>
+    
+     <center>
+         
+               <h3 style="color:white;">fadlan halkaan gali code ka lagu siiyey si aad ciyaarra udaawato </h3>
+       
+       <br>
+       <!DOCTYPE html>
+<html>
+<head>
+  
+  
+</head>
+<body>
+  <div class="container">
+    
+    <input type="text" id="code" placeholder="Enter activation code">
+    <button id="golive" class="btn">Go Live</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+       </center>
+<style>
+    
+    
+    .container {
+  width: 400px;
+  margin: 0 auto;
+}
+
+input {
+  width: 50%;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  width: 20%;
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #ccc;
+}
+
+</style>
+
+<script>
+    
+    const codeInput = document.getElementById("code");
+const goliveButton = document.getElementById("golive");
+
+goliveButton.addEventListener("click", function() {
+  const code = codeInput.value;
+  if (code === "9991" || code === "01010" || code === "1111" || code === "92929" || code === "8282") {
+    window.location.href = "https://ipaijj.github.io/Last/index.html";
+  } else {
+    alert("Hey is ka sax code ka mahadsanid");
+  }
+});
+
+</script>
+     </center>
+       <center>       <h2>thank You</h2>    <h3 style="color:white;">waad kumahadsan tahy isdiwan galintaada si appka laguugu fasaxo waa inaad bixiso laba xirmood midkood 0.5$ oo aad kudaawan karto halbiL ama 1$ oo aad ku daawan karto  laba bil hadii aad kuqanacdey  ama aad rabto caddeen iyo  tijaabo aad kuqanacdo ama faafahin dheeri nagalasoo xiriir
+</h3>
+       
+
+       
+       <br><a href="whatsapp://send?text=iifurwalalappka &phone=+252613050220">Whatsapp</a><br> <a href="tel:+252614386039">Phone call</a>  `</center>  `
+       <br>
+       <center>
+           
+       
+       <br>
+
+
+<div style="padding-bottom: 56.25%; max-width: 100%; position: relative;"><iframe src="https://www.youtube.com/embed/SV6mEWXanX0?modestbranding=1&rel=0&cc_load_policy=1&iv_load_policy=3&controls=0&disablekb=1&fs=0&color=white" width="" height="0" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;" frameborder="0"></iframe></div>
+
+
+
+
+
+       
+       
+       
+       
+       
+       
+
+<script> 
+get_ip().then( ip => {
+  el = document.getElementsByTagName('div')[0];
+  el.innerHTML = el.innerHTML.replace(':ipaddress',ip)
+})
+
+function get_ip() {
+ let url = 'https://postman-echo.com/ip' // need cors
+ //url = 'https://iph.heliohost.org/cgi-bin/jsonip.pl'
+ //url = 'https://api.ipify.org/?format=json'
+ //url = 'https://ipinfo.io/json'
+ url = 'https://ipfs.blockringtm.ml/cgi-bin/remote_addr.txt'
+ url = 'https://www.cloudflare.com/cdn-cgi/trace'
+ return fetch(url,{mode:'cors'})
+ .then( resp=> resp.text() )
+ .then( text => {
+   if (! text.match('^[{\[]')) {
+     if (text.match('cloudflare')) {
+       return text.match('ip=(.*)')[1]
+     } else {
+       console.debug('text:',text);
+       return text.replace(/\n$/,'');
+     }
+   } else {
+     let json = JSON.parse(text);
+     if (typeof(json.ip) != 'undefined') {
+       return json.ip
+     } else if (typeof(json.query) != 'undefined') {
+       return json.query
+     } else { 
+       console.log('json:',json);
+       return '0.0.0.0'
+     }
+   }
+  } )
+ .catch( console.error )
+}
+
+
+
+</script>      
+
+
+<style>          body {  background-color:  #e8a210; margin: 0;
+
+
+
+return json.query     } else {        console.log('json:',json);       return '0.0.0.0'     }   }  } ) .catch( console.error )}               </script>      <style>          body {  background-color:  #D7272D; margin: 0; padding: 0; height: 100vh;}body > div {  padding: 1.2rem;  max-width: 480px;  height: 10%;
+
+
+<style>          body {  background-color:  #D7272D; margin: 0; padding: 0; height: 100vh;}body > div {  padding: 1.2rem;  max-width: 480px;  height: 10%;  margin: auto;  color: #fff;  font-size: 20px;  font-display: Sans-Serif;    margin-top: 100vh  background-color: white;  opacity: 0.94;  box-shadow: 5px 5px 15px 2px rgba(4,3,5,0.9);  border-radius: 12px;    }
+
+height: 10%;  margin: auto;  color: #fff;  font-size: 20px;  font-display: Sans-Serif;    margin-top: 100vh  background-color: white;  opacity: 0.94;  box-shadow: 5px 5px 15px 2px rgba(4,3,5,0.9);  border-radius: 12px;    }a {  text-decoration: none;  display: flex;  justify-content: center;  align-items: center;  width: 216px;  height: 56px;  text-align: center;  border-radius: 12px;}
+a {  text-decoration: none;  display: flex;  justify-content: center;  align-items: center;  width: 216px;  height: 56px;  text-align: center;  border-radius: 12px;}a :hover {  opacity: .8;}a {  background: #1c449b;}a {  color: #fff;}a {  font-size: 20px;  font-family: Sans-Serif;
+
+background: #1c449b;}a {  color: #fff;}a {  font-size: 20px;  font-family: Sans-Serif;}    h3{            font-family: Sans-Serif;  }    h2{      font-family: Sans-Serif      color: green;  }        </style>  `  </body></html>
+
