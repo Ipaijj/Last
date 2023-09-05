@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - HLS.JS And Plyr (Multiple Instances)</title>
+    <head>
+    <meta charset="utf-8">
+    <title>HLS.JS + Plyr Demo</title>
+    <meta name="description" content="HLS.JS And Plyr Demo">
+  </head><link rel='stylesheet' href='https://cdn.plyr.io/3.6.9/plyr.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!--The head tag information and stylesheet is in the Pen Settings.-->
+
+<!--
+  <head>
+    <meta charset="utf-8">
+    <title>HLS.JS + Plyr Demo</title>
+    <meta name="description" content="HLS.JS And Plyr Demo">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.9/plyr.css">
+  </head>
+-->
+
+<body>
+  <h1>Video Gallary</h1>
+  <div class="video-wrapper">
+    <video preload="none" id="player" controls crossorigin playsinline poster="https://bitdash-a.akamaihd.net/content/sintel/poster.png"></video>
+
+  <!--Scripts imports are in Pen settings-->
+
+  <!--
+  <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
+  <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
+-->
+</body>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.3/plyr.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.0.12/hls.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
+
+<script>>
+    
+// Initialize Plyr
+const players = Plyr.setup("video");
+window.players = players;
+
+// First Video
+(function () {
+  var video = document.querySelector("#player");
+  if (Hls.isSupported()) {
+    var hls = new Hls();
+    hls.loadSource(
+      "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+    );
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+      video.play();
+    });
+  }
+  plyr.setup(video);
+})();
+
+// 2nd Video
+(function () {
+  var video = document.querySelector("#player");
+  if (Hls.isSupported()) {
+    var hls = new Hls();
+    hls.loadSource("https://content.jwplatform.com/manifests/vM7nH0Kl.m3u8");
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, function () {
+      video.play();
+    });
+  }
+  plyr.setup(video);
+})();    
+    
+
+</script>
+
+<style>
+    
+ body {
+  background-color: black;
+  font-family: sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 60px;
+}
+
+.video-wrapper {
+  width: 92%;
+  padding-bottom: 50px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  --plyr-color-main: #6a0dad; /*Player Theme Colour*/
+}   
+    
+</style>
