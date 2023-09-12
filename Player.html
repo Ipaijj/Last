@@ -74,7 +74,7 @@ window.players = players;
   var video = document.querySelector("#player");
   if (Hls.isSupported()) {
     var hls = new Hls();
-    hls.loadSource("https://stream.dlivecdn.com/sternenkind/1694492694/360p/live.m3u8");
+    hls.loadSource("https://stream.dlivecdn.com/sternenkind/7383838000/360p/live.m3u8");
     hls.attachMedia(video);
     hls.on(Hls.Events.MANIFEST_PARSED, function () {
       video.play();
