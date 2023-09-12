@@ -27,6 +27,10 @@
   <h1>Video Gallary</h1>
   <div class="video-wrapper">
     <video preload="none" id="player" controls crossorigin playsinline poster="https://bitdash-a.akamaihd.net/content/sintel/poster.png"></video>
+  </div>
+  <div class="video-wrapper">
+    <video preload="none" id="player2" controls crossorigin></video>
+  </div>
 
   <!--Scripts imports are in Pen settings-->
 
@@ -42,9 +46,10 @@
 </body>
 </html>
 
-<script>>
+<script>
     
-// Initialize Plyr
+    
+    // Initialize Plyr
 const players = Plyr.setup("video");
 window.players = players;
 
@@ -54,7 +59,7 @@ window.players = players;
   if (Hls.isSupported()) {
     var hls = new Hls();
     hls.loadSource(
-      "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
+      "https://stream.dlivecdn.com/sternenkind/1694492694/360p/live.m3u8"
     );
     hls.attachMedia(video);
     hls.on(Hls.Events.MANIFEST_PARSED, function () {
@@ -69,16 +74,14 @@ window.players = players;
   var video = document.querySelector("#player");
   if (Hls.isSupported()) {
     var hls = new Hls();
-    hls.loadSource("https://content.jwplatform.com/manifests/vM7nH0Kl.m3u8");
+    hls.loadSource("https://stream.dlivecdn.com/sternenkind/1694492694/360p/live.m3u8");
     hls.attachMedia(video);
     hls.on(Hls.Events.MANIFEST_PARSED, function () {
       video.play();
     });
   }
   plyr.setup(video);
-})();    
-    
-
+})();
 </script>
 
 <style>
