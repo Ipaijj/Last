@@ -2,108 +2,45 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - HLS.JS And Plyr (Multiple Instances)</title>
-    <head>
-    <meta charset="utf-8">
-    <title>HLS.JS + Plyr Demo</title>
-    <meta name="description" content="HLS.JS And Plyr Demo">
-  </head><link rel='stylesheet' href='https://cdn.plyr.io/3.6.9/plyr.css'><link rel="stylesheet" href="./style.css">
+  <title>CodePen - Plyr + hls.js</title>
+  <link rel="stylesheet" href="./style.css">
 
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<!--The head tag information and stylesheet is in the Pen Settings.-->
-
-<!--
+<!DOCTYPE html>
+<html>
   <head>
     <meta charset="utf-8">
-    <title>HLS.JS + Plyr Demo</title>
-    <meta name="description" content="HLS.JS And Plyr Demo">
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.9/plyr.css">
+    <title>HLS Demo</title>
+    <link rel="stylesheet" href="https://cdn.plyr.io/1.8.2/plyr.css">
   </head>
--->
-
-<body>
-  
-  <div class="video-wrapper">
-    <video preload="none" id="player" controls crossorigin playsinline poster="https://play-lh.googleusercontent.com/1whL6QhVjbjVWh78jWmILkowmCkg-vmSnMSbHXmfjZT-s5zGY6Ciz9hUHRG8EfsKt3bx=w526-h296-rw"></video>
-  </div>
-  
-
-  <!--Scripts imports are in Pen settings-->
-
-  <!--
-  <script src="https://cdn.plyr.io/3.6.9/plyr.js"></script>
-  <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
--->
-</body>
+  <body>
+    <video preload="none" id="player" autoplay controls crossorigin></video>
+    <script src="https://cdn.plyr.io/1.8.2/plyr.js"></script>
+    <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
+  </body>
+</html>
 <!-- partial -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.3/plyr.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.0.12/hls.min.js'></script><script  src="./script.js"></script>
+  <script  src="./script.js"></script>
 
 </body>
 </html>
 
-
-<style>
-    
-    body {
-  background-color: black;
-  font-family: sans-serif;
-  font-weight: 400;
-}
-
-h1 {
-  color: white;
-  text-align: center;
-  padding-top: 50px;
-  padding-bottom: 60px;
-}
-
-.video-wrapper {
-  width: 92%;
-  padding-bottom: 50px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  --plyr-color-main: #6a0dad; /*Player Theme Colour*/
-}
-</style>
-
-
 <script>
+    (function () {
+  var video = document.querySelector('#player');
+
+  if (Hls.isSupported()) {
+    var hls = new Hls();
+    hls.loadSource('https://video-weaver.mrs02.hls.live-video.net/v1/playlist/Ct0FQJmw8Xau8xaZ0k7kNwOwPZAuMPGIuPqL-Z8XbMqTSGI4jrtx2iqYOqEqjuR0a6Qe3r2jxnnb1u2CagAhEcHlkEi0XlME5mOeWcu2Mmn3Gw19z8oD0A-lULy4Ehz9JqE6aGF4422gjCCkL6Yb4LZhGNHvSzKmcjzZXeEz8FJxuS4OeomK-wM2X6WmrMDPkSI0af2nzFdUNFivHXqdTXXsPmodUIwt1V0LOY8w12lBwbwvQ931a-ykKIu9CIAIh-ZuAplT4IxLEqH80FB4DiQIsVURGCoVYeUbisof8RJj4k5OQ7FXMt3lahItlnSnC31F4Ue9QUqnaGExeLpIoVXg_L9gb8witmorexLLtTz1vZCz7OmLB8nA6gnzoak7j6sSFG9VdzKVlRJpuAZGCctXSsm5Z2X0HXJyuJX7M4uz7DipwV8FvujnPo7B4Otv2hrSlSeICDeiEZzjBjI4dB_n4kVV1MVX1K4cDTQNZHSeVZjQ3tiw7shvHqfh65UuwmHlFk-FFn-fo5l90qHr5xd6GMXOE2pDVKN2YkE3obQdXJwFZaLzNWTGHFjbihTQiavcWPxh1d2i9C1cGTJjq1TJnBlyhvhV3uSVts4E1TJOE3EErtk5NhVjJbtILbC7EWpXjFX-ssPOrQPIlfsdiqCMt0yd3AoDNNl6RbhpfG43pB17CHV0juesq2DQg6KubVE2QonocwFtkWm9rGtLkSQu5Che-MEJZjllyuM6CvEXeW_LGYfpNiVTQQzKberT6ZuX-Q7CV7LKrdLBsukC-jbTtv1z6muiMCaCrzXnDWsQqwdUElkzQSk-uHlZIFspWeP13MvnCsLCdGh2CBfe0sqHT2b_koPKipMW94mWLPaMAjOh0XNKo0ZeR1w__8zPRiwMEBEoo7iQBiQsowFqQJQ10uNY73C-UqKq_FQqZrucb8uavTTi128g-2nDjQL-gm7tAFDhU-Et9ZrZPnsjHBoMeRYfTWMr3d1sTJXFIAEqCXVzLWVhc3QtMjDNBw.m3u8');
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED,function() {
+      video.play();
+    });
+  }
+  
+  plyr.setup(video);
+})();
     
-    // Initialize Plyr
-const players = Plyr.setup("video");
-window.players = players;
-
-// First Video
-(function () {
-  var video = document.querySelector("#player");
-  if (Hls.isSupported()) {
-    var hls = new Hls();
-    hls.loadSource(
-      "https://live.prd.dlive.tv/hls/live/dlive-ifeptalqgz.m3u8"
-    );
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED, function () {
-      video.play();
-    });
-  }
-  plyr.setup(video);
-})();
-
-// 2nd Video
-(function () {
-  var video = document.querySelector("#player");
-  if (Hls.isSupported()) {
-    var hls = new Hls();
-    hls.loadSource("https://content.jwplatform.com/manifests/vM7nH0Kl.m3u8");
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED, function () {
-      video.play();
-    });
-  }
-  plyr.setup(video);
-})();
 </script>
