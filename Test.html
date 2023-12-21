@@ -1,76 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Fit Screen Video Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Fullscreen Video Player</title>
 </head>
 <body>
-  <div class="video-container">
-    <video id="horizontalVideo" controls>
-      <source src="https://github.com/Sodkk/Last/raw/main/lv_0_20231222004750.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-  <script src="script.js"></script>
-</body>
-</html>
 
-
-<style>
-    
-   body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-.video-container {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#horizontalVideo {
-  width: auto;
-  height: 100%;
-}
- 
-</style>
+<video id="myVideo" width="640" height="360" controls>
+    <source src="https://github.com/Sodkk/Last/raw/main/lv_0_20231222004750.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
 <script>
-    
-    
-    window.addEventListener('resize', function() {
-  fitVideoToScreen();
-});
+    var video = document.getElementById("myVideo");
 
-function fitVideoToScreen() {
-  const video = document.getElementById('horizontalVideo');
-  const videoContainer = document.querySelector('.video-container');
-  
-  const videoWidth = video.videoWidth;
-  const videoHeight = video.videoHeight;
-  
-  const containerWidth = videoContainer.clientWidth;
-  const containerHeight = videoContainer.clientHeight;
+    // Function to toggle fullscreen
+    function toggleFullScreen() {
+        if (video.requestFullscreen) {
+            video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) { // Firefox
+            video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) { // IE/Edge
+            video.msRequestFullscreen();
+        }
+    }
 
-  const containerAspectRatio = containerWidth / containerHeight;
-  const videoAspectRatio = videoWidth / videoHeight;
-
-  if (containerAspectRatio > videoAspectRatio) {
-    video.style.width = '100%';
-    video.style.height = 'auto';
-  } else {
-    video.style.width = 'auto';
-    video.style.height = '100%';
-  }
-}
-
-// Initial call to fit the video to the screen on page load
-fitVideoToScreen();
-
+    // Auto-click fullscreen toggle after the video is loaded
+    video.addEventListener("loadedmetadata", function() {
+        setTimeout(function() {
+            toggleFullScreen();
+        }, 1000); // Adjust the delay as needed
+    });
 </script>
+
+</body>
+</html>
