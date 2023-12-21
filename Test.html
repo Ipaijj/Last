@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Full Screen Video</title>
+</head>
+<body>
+    <div class="video-container">
+        <video id="fullscreen-video" autoplay controls>
+            <source src="https://github.com/Sodkk/Last/raw/main/VID-20231221-WA0033.mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+  <style>
+      
+      
+      body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.video-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#fullscreen-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+  </style>
+      
+       <script>
+           
+           
+         document.addEventListener('DOMContentLoaded', function () {
+    var video = document.getElementById('fullscreen-video');
+
+    // Play video automatically
+    video.play();
+
+    // Make video full screen
+    video.addEventListener('click', function () {
+        if (video.requestFullscreen) {
+            video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) {
+            video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) {
+            video.webkitRequestFullscreen();
+        }
+    });
+});
+  
+       </script>
+    
