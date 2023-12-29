@@ -67,12 +67,12 @@ const goliveButton = document.getElementById("golive");
 
 goliveButton.addEventListener("click", function() {
   const code = codeInput.value;
-  const whatsappCodes = ["3000", "9001", "3001", "1111", "0000" ];
+  const whatsappCodes = ["3000", "9001", "3001", "1111" ];
 
   if (whatsappCodes.includes(code)) {
     const whatsappLink = `https://sodkk.github.io/Last/Expire.html`;
     window.location.href = whatsappLink;
-  } else if (code === "9991" || code === "6666" || code === "1010" || code === "5566"  || code === "op1"|| code === "op1"| | code === "op1"|| code === "op1"|| code === "op1"|| code === "op1"|| code === "op1"|code === "7777" ) {
+  } else if (code === "9991" || code === "6666" || code === "1010" || code === "5566"  | code === "7777") {
     window.location.href = "https://sodkk.github.io/Last/Good.html";
   } else {
     alert("Hey is ka sax code ka mahadsanid");
