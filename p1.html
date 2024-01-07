@@ -1,3 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - HLS.JS And Plyr (Multiple Instances)</title>
+    <head>
+    <meta charset="utf-8">
+    <title>HLS.JS + Plyr Demo</title>
+    <meta name="description" content="HLS.JS And Plyr Demo">
+  </head><link rel='stylesheet' href='https://cdn.plyr.io/3.6.9/plyr.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
 <!--The head tag information and stylesheet is in the Pen Settings.-->
 
 <!--
@@ -25,11 +39,15 @@
   <script src="https://cdn.jsdelivr.net/hls.js/latest/hls.js"></script>
 -->
 </body>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.3/plyr.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.0.12/hls.min.js'></script><script  src="./script.js"></script>
 
+</body>
+</html>
+<style>
 
-
-
-<style>body {
+body {
   background-color: black;
   font-family: sans-serif;
   font-weight: 400;
@@ -49,8 +67,16 @@ h1 {
   margin-left: auto;
   margin-right: auto;
   --plyr-color-main: #6a0dad; /*Player Theme Colour*/
+
+
+
+
+
+
 }
 </style>
+
+
 <script>
 
   // Initialize Plyr
@@ -63,7 +89,7 @@ window.players = players;
   if (Hls.isSupported()) {
     var hls = new Hls();
     hls.loadSource(
-      "https://video-weaver.mrs02.hls.live-video.net/v1/playlist/CtQFAJBvmYo94LbzJvRKp9EYo-RljMq1vKXNr9pfMiRnviO5g45rWhCHCNdMwUBnj0XJyymcxAXUuuN9ocDduRR39MDbHyTY6IVv584E2Ww_lKvXGmtlPpr1Aap0elIauynz7NdMT207gfg3qDsTuDWF5tDlkJg1IOiWnTVtd3v4697bxdp2bxJrXnak1-DHtfA8cRRFqGGDxhoMGA7utqlBvc5u3DAybs_babF_kgdKoDE8DvPcg5xqZ73WBhw_wRDasAEemL8r0klKmqpGI9liCIwNmTZ1rH5CMoJrTmdnphelSaCKIOBX-r0vDeM3wcoSBY29CHtZrg5LjvaKnfi4O8mpoZNnIV6VAy98INxCrkpJzkGFFc5fxnsVFLOdt0DSsyXXFSjCs-B5S6rze2F6wAFqK0-oroPfZ1dBDIC26SR3vl207xSSGa4ggCGDeOsecG_eXySJM4gFERoNFOTvwg5vT5mRgp4wm4VmKlnokfD5kndzk7JfBRtp7PFHXLdPklIxkr51goQWt79XAl-q9pYMdezASNEj4dey2d1vRFBqI8qKjgjKl2Lu_x--yTXAwsjhikvotQ7k3vk-Ieey65ntdszNfp5xAztAJ8Qb7bQ8Z2ajH4Z_azoWHgJaldesnzlFu7aii3WWVSNGLzqLIHmXcwC34REbCAl1fGVKUVkdp7PjvHan6X2ct-XJ8CDtM5d-iO-_BsthYo-PLaoHg5hSrsxgY3eYnn9ih0qxbPromZ1CiABMRtjx3ld2z4LZ0fuRbrKf559OJPd9IpnQNuH-JLzClqQdvZ_9Og5RS96CQW2op_6cfjXOQh6nt5YpDttASbrhs2O2Muu4U-LC0FziHBiq59xrG3WLkWfL79X0Y2ziJWPPzgZ_7gGjx4sHekbozjhKNFHB2AmI-vxIhYeIgqelQIRWXxB9KuNcnsW0GkyzrjRYvy9qCbJjUA1n0Djf9xoMY4uCqQWAdz0_pLVwIAEqCWV1LXdlc3QtMTCsBA.m3u8"
+      "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8"
     );
     hls.attachMedia(video);
     hls.on(Hls.Events.MANIFEST_PARSED, function () {
@@ -86,5 +112,4 @@ window.players = players;
   }
   plyr.setup(video);
 })();
-
 </script>
