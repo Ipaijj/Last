@@ -2,151 +2,174 @@
   
 
     
+/* Reset some default styles to ensure consistency */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-  
+/* Apply a basic styling to the body */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* Set maximum width and center the content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 600px) {
+    /* Adjust styles for smaller screens */
     body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      height: 100vh;
+        font-size: 16px;
     }
 
-    
+   
 
-    .container {
-      text-align: center;
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      margin-bottom: 20px;
-      box-sizing: border-box;
-    }
+   
 
-    #code {
-      width: 200px;
-      padding: 10px;
-      margin: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    }
+   .container {
+     text-align: center;
+     background-color: rgba(255, 255, 255, 0.8);
+     border-radius: 8px;
+     padding: 20px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     margin-bottom: 20px;
+     box-sizing: border-box;
+     padding: 10px;
+   }
 
-    #golive {
-      background-color: #008000;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 4px;
-      box-sizing: border-box;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    }
-    
-    #buycode {
-    
-    
-    
-    background-color: #000000;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
-      border-radius: 4px;
-      box-sizing: border-box;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    }
-    
-    
-    
+   #code {
+     width: 200px;
+     padding: 10px;
+     margin: 10px;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+   }
 
-    p.arabic-text {
-      color: #2196F3;
-      font-size: 18px;
-    }
+   #golive {
+     background-color: #008000;
+     color: white;
+     border: none;
+     padding: 10px 20px;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 16px;
+     margin: 4px 2px;
+     cursor: pointer;
+     border-radius: 4px;
+     box-sizing: border-box;
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+   }
+   
+   #buycode {
+   
+   
+   
+   background-color: #000000;
+     color: white;
+     border: none;
+     padding: 10px 20px;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 16px;
+     margin: 4px 2px;
+     cursor: pointer;
+     border-radius: 4px;
+     box-sizing: border-box;
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+   }
+   
+   
+   
 
-    .image-container {
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      overflow: hidden;
-      margin-top: 20px;
-    }
+   p.arabic-text {
+     color: #2196F3;
+     font-size: 18px;
+   }
 
-    .image-container img {
-      width: 100%;
-      max-width: 100%; /* adjust as needed */
-      border-radius: 4px;
-      box-sizing: border-box;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    }
-  </style>
+   .image-container {
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     border-radius: 8px;
+     overflow: hidden;
+     margin-top: 20px;
+   }
+
+   .image-container img {
+     width: 100%;
+     max-width: 100%; /* adjust as needed */
+     border-radius: 4px;
+     box-sizing: border-box;
+     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+   }
+ </style>
 </head>
 <body>
-    <center>
-        
+   <center>
+       
 
- 
-      </center>
-         <h2>gali code kaaga halkaan.</h2>  
-  <div class="container">
- 
-    <input type="text" id="code" placeholder="Enter activation code">
-    <button id="golive" class="btn">Go Live</button>
-    
-    
+
+     </center>
+        <h2>gali code kaaga halkaan.</h2>  
+ <div class="container">
+
+   <input type="text" id="code" placeholder="Enter activation code">
+   <button id="golive" class="btn">Go Live</button>
    
-  </div>
-
-   <h2>hadii aad cusubtahay daawo video gaan hoose</h2> 
-    <p>somalia halkii bil waa 1$ wadamada kale waa 1.5$</p>
-
-    <div class="image-container">
-    <a href="https://www.youtube.com/embed/SRbrKlWCpQ4">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEKuRBRv-SV2y1S6xeIDlxj2Eolm03n5uz_g&usqp=CAU" alt="Additional Image">
-    </a>
+   
   
+ </div>
+
+  <h2>hadii aad cusubtahay daawo video gaan hoose</h2> 
+   <p>somalia halkii bil waa 1$ wadamada kale waa 1.5$</p>
+
+   <div class="image-container">
+   <a href="https://www.youtube.com/embed/SRbrKlWCpQ4">
+     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEKuRBRv-SV2y1S6xeIDlxj2Eolm03n5uz_g&usqp=CAU" alt="Additional Image">
+   </a>
+ 
 <br>
 
-  <a href="whatsapp://send?text=asc, iifur appka iphone &phone=+252613050220" id="buycode">whatsapp</a>
-    <a href="https://www.buymeacoffee.com/nagutegh/e/183092" id="buycode">yearly pay 15$</a>
-  
-  <script src="script.js"></script>
+ <a href="whatsapp://send?text=asc, iifur appka iphone &phone=+252613050220" id="buycode">whatsapp</a>
+   <a href="https://www.buymeacoffee.com/nagutegh/e/183092" id="buycode">yearly pay 15$</a>
+ 
+ <script src="script.js"></script>
 </body>
 </html>
 
 
 <script>
-    
-    const codeInput = document.getElementById("code");
+   
+   const codeInput = document.getElementById("code");
 const goliveButton = document.getElementById("golive");
 
 goliveButton.addEventListener("click", function() {
-  const code = codeInput.value;
-  const whatsappCodes = ["3000", "9001", "3001", "1111","1010","6666" ];
+ const code = codeInput.value;
+ const whatsappCodes = ["3000", "9001", "3001", "1111","1010","6666" ];
 
-  if (whatsappCodes.includes(code)) {
-    const whatsappLink = `https://sodkk.github.io/Last/Good.html`;
-    window.location.href = whatsappLink;
-  } else if (code === "9991" || code === "3333" || code === "3030" || code === "5566" || code === "6006"|| code === "7090"| code === "7777") {
-    window.location.href = "https://sodkk.github.io/Last/Good.html";
-  } else {
-    alert("Hey is ka sax code ka mahadsanid");
-  }
+ if (whatsappCodes.includes(code)) {
+   const whatsappLink = `https://sodkk.github.io/Last/Good.html`;
+   window.location.href = whatsappLink;
+ } else if (code === "9991" || code === "3333" || code === "3030" || code === "5566" || code === "6006"|| code === "7090"| code === "7777") {
+   window.location.href = "https://sodkk.github.io/Last/Good.html";
+ } else {
+   alert("Hey is ka sax code ka mahadsanid");
+ }
 });
 
 </script>
