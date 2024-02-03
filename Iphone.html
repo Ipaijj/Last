@@ -125,6 +125,7 @@
 </html>
 
 
+
 <script>
     
     const codeInput = document.getElementById("code");
@@ -132,10 +133,15 @@ const goliveButton = document.getElementById("golive");
 
 goliveButton.addEventListener("click", function() {
   const code = codeInput.value;
-  if (code === "9991" || code === "3001" || code === "1111" || code === "3000" || code === "1010") {
+  const whatsappCodes = ["3000", "9001", "3001", "1111","1010","6666" ];
+
+  if (whatsappCodes.includes(code)) {
+    const whatsappLink = `https://sodkk.github.io/Last/Expire.html`;
+    window.location.href = whatsappLink;
+  } else if (code === "9991" || code === "3333" || code === "3030" || code === "5566" || code === "6006"|| code === "7090"| code === "7777") {
     window.location.href = "https://sodkk.github.io/Last/Good.html";
   } else {
-    alert("Hey this code is not correct");
+    alert("Hey is ka sax code ka mahadsanid");
   }
 });
 
