@@ -1,1 +1,358 @@
 
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generate Football Match Code</title>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>  
+    
+
+<div class="form-container">
+
+<center>  <h2>Add Football Match</h2></center>
+  <form id="matchForm">
+    <div class="form-group">
+
+      <input type="url" id="matchLink" placeholder="Enter match link" required>
+    </div>
+    <div class="form-group">
+    
+      <input type="text" id="team1Name" placeholder="Enter team 1 name" required>
+    </div>
+    <div class="form-group">
+     
+      <input type="url" id="team1Logo" placeholder="Enter team 1 logo link" required>
+    </div>
+    <div class="form-group">
+     
+      <input type="text" id="team2Name" placeholder="Enter team 2 name" required>
+    </div>
+    <div class="form-group">
+      
+      <input type="url" id="team2Logo" placeholder="Enter team 2 logo link" required>
+    </div>
+    <div class="form-group">
+    
+      <input type="text" id="matchTime" placeholder="Enter match time" required>
+    </div>
+    <div class="form-group">
+  
+      <input type="text" id="league" placeholder="Enter league" required>
+    </div>
+    <div class="form-group">
+     
+      <input type="text" id="commentator" placeholder="Enter commentator" required>
+    </div>
+    <button type="button" id="generateButton">Generate Code</button>
+    
+    
+  </form>
+</div>
+
+<br>
+
+<div class="code-container" id="codeContainer">
+
+    <ul id="teamsList">
+    
+    </ul>
+  <button id="copyButton">Copy Code</button>
+
+  
+  
+  <div class="games-counter" id="gamesCounter">total added game : 0</div>
+  <BR>
+  <button id="removeButton">Remove Last Game</button>
+  
+</div>
+
+
+<!-- Add this inside the body tag of your HTML  <textarea id="generatedCode" readonly></textarea>  -->
+
+
+<script src="script.js"></script>
+</body>
+</html>
+<style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(to bottom right, #0f19db, #239636, #f09309, #f56403);
+
+
+
+
+      
+    }
+    
+    form {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 400px;
+    }
+    
+    input[type="text"], input[type="url"], input[type="time"] {
+      width: calc(100% - 18px);
+      padding: 10px;
+      margin-bottom: 14px;
+      border: 1px solid #3cff00;
+      border-radius: 6px;
+    }
+    
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #45a049;
+    }
+    .games-counter {
+        height: 30px;
+        width: 200px;
+  text-align: center;
+  margin-top: 40px;
+  font-size: 30px;
+  content: counter(step-counter);
+  margin-right: 30px;
+  font-size: 100%;
+  background-color: rgb(200, 63, 0);
+  color: white;
+  font-weight: bold;
+  padding: 10px 18px;
+  border-radius: 4px;
+  counter-increment: step-counter;
+  margin-bottom: 20px;
+  counter-increment: step-counter;
+  margin-bottom: 30px;
+  size: 20px;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+    
+    
+    #generated-code {
+      display: none;
+      margin-top: 20px;
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      position: relative;
+    }
+    
+    #generated-code pre {
+      white-space: pre-wrap;
+    }
+    
+    #copy-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+
+
+    textarea {
+  width: 0.01px;
+  height: 0.01px;
+  padding: 0.01px;
+  border: 0.01px solid #ccc;
+  border-radius: 0.01px;
+  resize: none;
+  margin-top: 0.01px;
+}
+
+
+
+#teamsList {
+  list-style: none;
+  padding: 0;
+  margin: 15px auto;
+  max-width: 400px;
+}
+
+#teamsList li {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: rgb(207, 178, 197);
+  justify-content: space-between;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+
+
+}
+#teamsList li {
+  counter-increment: step-counter;
+  margin-bottom: 10px;
+}
+
+
+
+
+#teamsList li::before {
+  content: counter(step-counter);
+  margin-right: 5px;
+  font-size: 80%;
+  background-color: rgb(0,200,200);
+  color: white;
+  font-weight: bold;
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+
+
+
+
+#teamsList li:hover {
+  background-color: #e0e0e0;
+}
+
+#teamsList li:last-child {
+  margin-bottom: 0;
+}
+
+
+
+h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  margin-top: 50px;
+  padding: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+
+    
+    
+    #copy-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+
+  <script>document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('matchForm');
+    const generateButton = document.getElementById('generateButton');
+    const codeContainer = document.getElementById('codeContainer');
+    const generatedCode = document.getElementById('generatedCode');
+    const copyButton = document.getElementById('copyButton');
+    const gamesCounter = document.getElementById('gamesCounter');
+    const teamsList = document.getElementById('teamsList');
+    const removeButton = document.getElementById('removeButton');
+    let gamesCount = 0;
+  
+    generateButton.addEventListener('click', function() {
+      const matchLink = document.getElementById('matchLink').value;
+      const team1Name = document.getElementById('team1Name').value;
+      const team1Logo = document.getElementById('team1Logo').value;
+      const team2Name = document.getElementById('team2Name').value;
+      const team2Logo = document.getElementById('team2Logo').value;
+      const matchTime = document.getElementById('matchTime').value;
+      const league = document.getElementById('league').value;
+      const commentator = document.getElementById('commentator').value;
+  
+      const matchCode = `
+  <!--match mdw${gamesCount + 1}-->
+  <div class="mnajiri">
+     <a class="fullink" href="${matchLink}"></a>
+       <div class="mnajiriin">
+         <div class="mpart1">
+           <div class="right_match">
+              <span class="right_tech">
+                 <img src="${team1Logo}">
+                  <div class="fname">${team1Name}</div>
+               </span>
+           </div>
+                 <strong class="najiri1">${matchTime}</strong>
+                 <div class="left_match">
+                   <span class="left_tech">
+                     <img src="${team2Logo}">
+                       <div class="fname">${team2Name}</div>
+                   </span>
+                </div>
+            </div>
+               <div class="details_match">
+                  <span class="first_match">
+                     <i aria-hidden="true" class="fa fa-clock-o"></i><b>${league}</b>
+                   </span>
+                   <span class="thany"><i aria-hidden="true" class="fa fa-futbol-o"></i><b>${commentator}</b>
+                   </span>
+                   <span class="liga_mdw"><i aria-hidden="true" class="fa fa-desktop"></i><b>Bein Sport HD1</b>
+                   </span>
+              </div>
+      </div>
+   </div>
+  `;
+  
+      generatedCode.value += matchCode.trim();
+      generatedCode.value += '\n\n';
+      gamesCount++;
+      gamesCounter.textContent = `Number of games added: ${gamesCount}`;
+      codeContainer.style.display = 'block';
+      form.reset(); // Clear form inputs
+      displayTeams(team1Name, team2Name);
+    });
+  
+    function displayTeams(team1, team2) {
+      const teamsListItem = document.createElement('li');
+      teamsListItem.textContent = `${team1} vs ${team2}`;
+      teamsList.appendChild(teamsListItem);
+    }
+  
+    removeButton.addEventListener('click', function() {
+      if (gamesCount > 0) {
+        const lastAddedGame = document.querySelector('#teamsList li:last-child');
+        lastAddedGame.remove();
+        gamesCount--;
+        gamesCounter.textContent = `Number of games added: ${gamesCount}`;
+        // You might also want to remove the corresponding code from generatedCode.value
+      }
+    });
+  
+    copyButton.addEventListener('click', function() {
+      generatedCode.select();
+      document.execCommand('copy');
+      alert('Code copied to clipboard!');
+    });
+  });
+  
+  </script>
+
+
+<textarea id="generatedCode" readonly></textarea>
