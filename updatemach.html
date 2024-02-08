@@ -45,8 +45,12 @@
       <input type="text" id="matchTime" placeholder="Enter match time" required>
     </div>
     <div class="form-group">
+        
   
       <input type="text" id="league" placeholder="Enter league" required>
+
+      <div id="leagueResults"></div>
+
     </div>
     <div class="form-group">
      
@@ -290,6 +294,44 @@ h2 {
 #team2List img {
   margin-right: 10px;
 }
+
+
+
+
+
+/* Style for league search results container */
+#leagueResults {
+    position: absolute;
+    width: calc(20% - 2px); /* Adjust as needed */
+    max-height: 100px; /* Adjust as needed */
+    overflow-y: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 1000;
+  }
+  
+  /* Style for each league in the search results */
+  #leagueResults div {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  /* Style for league logo */
+  #leagueResults img {
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+  
+  /* Style for selected league in the input field */
+  #league::placeholder {
+    color: #ccc; /* Placeholder color */
+  }
+
+
+
+
+
 
 
 
@@ -624,6 +666,70 @@ displayMatchingTeams('team1Name', 'team1Logo', 'team1List');
 
 // Call the function for team 2 input field and logo input field
 displayMatchingTeams('team2Name', 'team2Logo', 'team2List');
+
+
+
+
+
+
+
+
+
+
+
+
+// Function to handle league search
+function searchLeagues() {
+    // Get the input value
+    var input = document.getElementById('league').value.toLowerCase();
+    
+    // Example league data (replace this with your actual league data)
+    var leagues = [
+      { name: 'Premier League', logo: 'https://cdn.resfu.com/media/img/league_logos/premier.png?size=120x&lossy=1' },
+      { name: 'La Liga spain', logo: 'https://cdn.resfu.com/media/img/league_logos/primera-division-ea.png?size=120x&lossy=1' },
+      { name: 'Bundesliga germam', logo: 'https://cdn.resfu.com/media/img/league_logos/bundesliga.png?size=120x&lossy=1' },
+      { name: 'Saudi Pro League', logo: 'https://cdn.resfu.com/media/img/league_logos/arabia-saudi.png?size=120x&lossy=1' },
+      { name: 'SerA italia', logo: 'https://cdn.resfu.com/media/img/league_logos/serie_a.png?size=120x&lossy=1' },
+      { name: 'Mls usa', logo: 'https://cdn.resfu.com/media/img/league_logos/mls.png?size=120x&lossy=1' },
+      { name: 'league1 france', logo: 'https://cdn.resfu.com/media/img/league_logos/ligue1.png?size=120x&lossy=1' },
+      { name: 'Primeira Liga', logo: 'https://cdn.resfu.com/media/img/league_logos/jpgliga.png?size=120x&lossy=1' },
+      { name: 'CAF Nation', logo: 'https://cdn.resfu.com/media/img/league_logos/copa-africa-2024.png?size=120x&lossy=1' },
+      { name: 'Asian Cup', logo: 'https://cdn.resfu.com/media/img/league_logos/copa-asia-2024.png?size=120x&lossy=1' },
+      { name: 'Champions League', logo: 'https://cdn.resfu.com/media/img/league_logos/champions.png?size=120x&lossy=1' },
+      { name: 'Friendly', logo: 'https://cdn.resfu.com/media/img/flags/round/wo.png?size=120x&lossy=1' },
+      { name: 'FA Cup', logo: 'https://cdn.resfu.com/media/img/league_logos/fa_cup.png?size=120x&lossy=1' },
+      { name: 'Carabao Cup', logo: 'https://cdn.resfu.com/media/img/league_logos/efl-cup.png?size=120x&lossy=1' },
+      { name: 'Europa League', logo: 'https://cdn.resfu.com/media/img/league_logos/eleague.png?size=120x&lossy=1' },
+      { name: 'Copa del Rey', logo: 'https://cdn.resfu.com/media/img/league_logos/copa-del-rey.png?size=120x&lossy=1' },
+      { name: 'Super Cup', logo: 'https://cdn.resfu.com/media/img/league_logos/supercopa_espana.png?size=120x&lossy=1' },
+      
+      // Add more league data here as needed
+    ];
+    
+    // Filter leagues based on input
+    var filteredLeagues = leagues.filter(function(league) {
+      return league.name.toLowerCase().includes(input);
+    });
+    
+    // Display search results
+    var resultsContainer = document.getElementById('leagueResults');
+    resultsContainer.innerHTML = ''; // Clear previous results
+    
+    filteredLeagues.forEach(function(league) {
+      var leagueElement = document.createElement('div');
+      leagueElement.innerHTML = `<img src="${league.logo}" alt="${league.name}" width="30"> ${league.name}`;
+      resultsContainer.appendChild(leagueElement);
+      
+      // Add click event listener to select league
+      leagueElement.addEventListener('click', function() {
+        document.getElementById('league').value = league.name; // Set input value
+        resultsContainer.innerHTML = ''; // Clear search results
+      });
+    });
+  }
+  
+  // Add event listener for input change
+  document.getElementById('league').addEventListener('input', searchLeagues);
 
 
 
