@@ -21,10 +21,12 @@
     <div class="form-group">
 
       <input type="url" id="matchLink" placeholder="Enter match link" required>
+      <ul id="team1List"></ul>
     </div>
     <div class="form-group">
     
       <input type="text" id="team1Name" placeholder="Enter team 1 name" required>
+      <ul id="team2List"></ul>
     </div>
     <div class="form-group">
      
@@ -263,6 +265,35 @@ h2 {
     #copy-button:hover {
       background-color: #45a049;
     }
+
+
+      #team1List,
+#team2List {
+  list-style: none;
+  padding: 0;
+  margin-top: 5px;
+  max-height: 100px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#team1List li,
+#team2List li {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#team1List img,
+#team2List img {
+  margin-right: 10px;
+}
+
+
+
+    
   </style>
 
   <script>document.addEventListener('DOMContentLoaded', function() {
@@ -351,6 +382,264 @@ h2 {
     });
   });
   
+
+// Define teams and logos
+const teams = [
+{ name: 'Man City', logo: 'https://cdn.resfu.com/img_data/equipos/1633.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Everton', logo: 'https://cdn.resfu.com/img_data/equipos/1017.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Fulham', logo: 'https://cdn.resfu.com/img_data/equipos/1183.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'AFC Bournemouth', logo: 'https://cdn.resfu.com/img_data/equipos/80.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Liverpool', logo: 'https://cdn.resfu.com/img_data/equipos/3845.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Burnley', logo: 'https://cdn.resfu.com/img_data/equipos/569.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Luton Town', logo: 'https://cdn.resfu.com/img_data/equipos/1600.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Sheffield United', logo: 'https://cdn.resfu.com/img_data/equipos/9182.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Tottenham', logo: 'https://cdn.resfu.com/img_data/equipos/2523.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Brighton', logo: 'https://cdn.resfu.com/img_data/equipos/5652.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Wolves', logo: 'https://cdn.resfu.com/img_data/equipos/5651.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Brentford', logo: 'https://cdn.resfu.com/img_data/equipos/9179.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Nottingham', logo: 'https://cdn.resfu.com/img_data/equipos/1825.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Newcastle', logo: 'https://cdn.resfu.com/img_data/equipos/1796.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Westham', logo: 'https://cdn.resfu.com/img_data/equipos/2804.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Arsenal', logo: 'https://cdn.resfu.com/img_data/equipos/263.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Aston Villa', logo: 'https://cdn.resfu.com/img_data/equipos/297.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Man United', logo: 'https://cdn.resfu.com/img_data/equipos/1635.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Crystal Place', logo: 'https://cdn.resfu.com/img_data/equipos/860.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Chelsea', logo: 'https://cdn.resfu.com/img_data/equipos/752.png?size=120x&lossy=1&ext=jpeg' },
+ 
+  { name: 'Real Betis', logo: 'https://cdn.resfu.com/img_data/equipos/486.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Cadiz', logo: 'https://cdn.resfu.com/img_data/equipos/603.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Deportivo Alaves', logo: 'https://cdn.resfu.com/img_data/equipos/137.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Villarreal', logo: 'https://cdn.resfu.com/img_data/equipos/2716.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Real Sociedad', logo: 'https://cdn.resfu.com/img_data/equipos/2120.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Osasuna', logo: 'https://cdn.resfu.com/img_data/equipos/1887.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Real Madrid', logo: 'https://cdn.resfu.com/img_data/equipos/2107.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Girona', logo: 'https://cdn.resfu.com/img_data/equipos/1236.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Las Palmas', logo: 'https://cdn.resfu.com/img_data/equipos/2563.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Valencia', logo: 'https://cdn.resfu.com/img_data/equipos/2647.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Getafe', logo: 'https://cdn.resfu.com/img_data/equipos/1217.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Celta', logo: 'https://cdn.resfu.com/img_data/equipos/712.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Mallorca', logo: 'https://cdn.resfu.com/img_data/equipos/1623.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Rayo Vallecano', logo: 'https://cdn.resfu.com/img_data/equipos/2080.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Sevilla', logo: 'https://cdn.resfu.com/img_data/equipos/1102.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Atletico', logo: 'https://cdn.resfu.com/img_data/equipos/369.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Barcelona', logo: 'https://cdn.resfu.com/img_data/equipos/429.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Granada', logo: 'https://cdn.resfu.com/img_data/equipos/4235.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Almeria', logo: 'https://cdn.resfu.com/img_data/equipos/183.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Athletic', logo: 'https://cdn.resfu.com/img_data/equipos/347.png?size=120x&lossy=1&ext=jpeg' },
+
+  { name: 'Salernitana', logo: 'https://cdn.resfu.com/img_data/equipos/2209.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Empoli', logo: 'https://cdn.resfu.com/img_data/equipos/983.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Cagliari', logo: 'https://cdn.resfu.com/img_data/equipos/609.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Lazio', logo: 'https://cdn.resfu.com/img_data/equipos/1526.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Roma', logo: 'https://cdn.resfu.com/img_data/equipos/2176.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Inter', logo: 'https://cdn.resfu.com/img_data/equipos/1381.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Sassuolo', logo: 'https://cdn.resfu.com/img_data/equipos/2634.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Torino', logo: 'https://cdn.resfu.com/img_data/equipos/2508.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Fiorentina', logo: 'https://cdn.resfu.com/img_data/equipos/1142.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Frosinone', logo: 'https://cdn.resfu.com/img_data/equipos/1174.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'AC Monza', logo: 'https://cdn.resfu.com/img_data/equipos/47.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Hellas Verona', logo: 'https://cdn.resfu.com/img_data/equipos/1305.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Bologna', logo: 'https://cdn.resfu.com/img_data/equipos/522.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Lecce', logo: 'https://cdn.resfu.com/img_data/equipos/1531.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Genoa', logo: 'https://cdn.resfu.com/img_data/equipos/4101.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Atalanta', logo: 'https://cdn.resfu.com/img_data/equipos/339.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Milan', logo: 'https://cdn.resfu.com/img_data/equipos/1692.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Napoli', logo: 'https://cdn.resfu.com/img_data/equipos/1777.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Juventus', logo: 'https://cdn.resfu.com/img_data/equipos/1430.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Udinese', logo: 'https://cdn.resfu.com/img_data/equipos/2573.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Metz', logo: 'https://cdn.resfu.com/img_data/equipos/1682.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Olympique', logo: 'https://cdn.resfu.com/img_data/equipos/5117.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Lens', logo: 'https://cdn.resfu.com/img_data/equipos/1544.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Strasbourg', logo: 'https://cdn.resfu.com/img_data/equipos/2430.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'PSG', logo: 'https://cdn.resfu.com/img_data/equipos/1924.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Lille', logo: 'https://cdn.resfu.com/img_data/equipos/3015.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Le Havre', logo: 'https://cdn.resfu.com/img_data/equipos/1527.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Toulouse', logo: 'https://cdn.resfu.com/img_data/equipos/2524.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Nantes', logo: 'https://cdn.resfu.com/img_data/equipos/1776.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Lorient', logo: 'https://cdn.resfu.com/img_data/equipos/1586.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Stade de Reims', logo: 'https://cdn.resfu.com/img_data/equipos/2421.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Montpellier', logo: 'https://cdn.resfu.com/img_data/equipos/1728.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Olympique Lyonnais', logo: 'https://cdn.resfu.com/img_data/equipos/1866.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Nice', logo: 'https://cdn.resfu.com/img_data/equipos/1799.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Monaco', logo: 'https://cdn.resfu.com/img_data/equipos/1713.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Stade Rennais', logo: 'https://cdn.resfu.com/img_data/equipos/3863.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Clermont', logo: 'https://cdn.resfu.com/img_data/equipos/788.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Stade Brestois', logo: 'https://cdn.resfu.com/img_data/equipos/2420.png?size=120x&lossy=1&ext=jpeg' },
+
+  { name: 'Dormund', logo: 'https://cdn.resfu.com/img_data/equipos/530.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'SC Freigbug', logo: 'https://cdn.resfu.com/img_data/equipos/2286.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'AF Augsburg', logo: 'https://cdn.resfu.com/img_data/equipos/1039.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'RP Leipzig', logo: 'https://cdn.resfu.com/img_data/equipos/9750.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Union Berlin', logo: 'https://cdn.resfu.com/img_data/equipos/8.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Wolfsburg', logo: 'https://cdn.resfu.com/img_data/equipos/2760.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Frankfurt', logo: 'https://cdn.resfu.com/img_data/equipos/960.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'VFL Bochum', logo: 'https://cdn.resfu.com/img_data/equipos/515.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Werder', logo: 'https://cdn.resfu.com/img_data/equipos/2746.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Heidenheim', logo: 'https://cdn.resfu.com/img_data/equipos/4094.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Monchengladbach', logo: 'https://cdn.resfu.com/img_data/equipos/5623.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Darmstadt 98', logo: 'https://cdn.resfu.com/img_data/equipos/5664.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Leverkusen', logo: 'https://cdn.resfu.com/img_data/equipos/3668.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Bayern', logo: 'https://cdn.resfu.com/img_data/equipos/449.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Stuttgart', logo: 'https://cdn.resfu.com/img_data/equipos/2433.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Mainz 05', logo: 'https://cdn.resfu.com/img_data/equipos/2987.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Hoffeinheim', logo: 'https://cdn.resfu.com/img_data/equipos/2542.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Koln', logo: 'https://cdn.resfu.com/img_data/equipos/4.png?size=120x&lossy=1&ext=jpeg' },
+
+
+  { name: 'Estrela da', logo: 'https://cdn.resfu.com/img_data/equipos/138438.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Portimonense', logo: 'https://cdn.resfu.com/img_data/equipos/11196.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Farence', logo: 'https://cdn.resfu.com/img_data/equipos/1030.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Famalicoa', logo: 'https://cdn.resfu.com/img_data/equipos/7017.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Morerense', logo: 'https://cdn.resfu.com/img_data/equipos/1737.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Chaves', logo: 'https://cdn.resfu.com/img_data/equipos/7018.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Boavista', logo: 'https://cdn.resfu.com/img_data/equipos/513.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Estoril', logo: 'https://cdn.resfu.com/img_data/equipos/1007.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Rio Ave', logo: 'https://cdn.resfu.com/img_data/equipos/2163.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Casa Pia', logo: 'https://cdn.resfu.com/img_data/equipos/7098.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Sporting CP', logo: 'https://cdn.resfu.com/img_data/equipos/4098.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Sporting Braga', logo: 'https://cdn.resfu.com/img_data/equipos/2386.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Vitoria', logo: 'https://cdn.resfu.com/img_data/equipos/2730.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Benfica', logo: 'https://cdn.resfu.com/img_data/equipos/466.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Arouca', logo: 'https://cdn.resfu.com/img_data/equipos/4641.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Porto', logo: 'https://cdn.resfu.com/img_data/equipos/1095.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Gil Vicente', logo: 'https://cdn.resfu.com/img_data/equipos/1223.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Visele', logo: 'https://cdn.resfu.com/img_data/equipos/7015.png?size=120x&lossy=1&ext=jpeg' },
+
+
+  { name: 'Inter Miami', logo: 'https://cdn.resfu.com/img_data/equipos/119123.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Real Salt Lake', logo: 'https://cdn.resfu.com/img_data/equipos/2119.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Columus', logo: 'https://cdn.resfu.com/img_data/equipos/819.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Atlanta United', logo: 'https://cdn.resfu.com/img_data/equipos/89624.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Los Angeles', logo: 'https://cdn.resfu.com/img_data/equipos/99747.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Seattle', logo: 'https://cdn.resfu.com/img_data/equipos/3992.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Charlotte', logo: 'https://cdn.resfu.com/img_data/equipos/137770.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'New York', logo: 'https://cdn.resfu.com/img_data/equipos/59736.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'DC United', logo: 'https://cdn.resfu.com/img_data/equipos/888.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'New England', logo: 'https://cdn.resfu.com/img_data/equipos/3994.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Orlando City', logo: 'https://cdn.resfu.com/img_data/equipos/17824.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'FC Montreal', logo: 'https://cdn.resfu.com/img_data/equipos/6385.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Philladelphia', logo: 'https://cdn.resfu.com/img_data/equipos/4345.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Chicago', logo: 'https://cdn.resfu.com/img_data/equipos/758.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Austin', logo: 'https://cdn.resfu.com/img_data/equipos/137675.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Mennosota United', logo: 'https://cdn.resfu.com/img_data/equipos/17861.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'FC Dallas', logo: 'https://cdn.resfu.com/img_data/equipos/1057.png?size=120x&lossy=1' },
+  { name: 'San Jose', logo: 'https://cdn.resfu.com/img_data/equipos/11886.png?size=50x&lossy=1' },
+  { name: 'Houston', logo: 'https://cdn.resfu.com/img_data/equipos/1335.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Sporting Kansas', logo: 'https://cdn.resfu.com/img_data/equipos/1440.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Cincinnati', logo: 'https://cdn.resfu.com/img_data/equipos/84193.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Toronto', logo: 'https://cdn.resfu.com/img_data/equipos/2509.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Nashville', logo: 'https://cdn.resfu.com/img_data/equipos/109669.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Fayha', logo: 'https://cdn.resfu.com/img_data/equipos/18060.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'St Louis', logo: 'https://cdn.resfu.com/img_data/equipos/150935.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Colorado', logo: 'https://cdn.resfu.com/img_data/equipos/818.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Portland', logo: 'https://cdn.resfu.com/img_data/equipos/5610.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Abha', logo: 'https://cdn.resfu.com/img_data/equipos/4478.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Taawoun', logo: 'https://cdn.resfu.com/img_data/equipos/6444.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Khaleej', logo: 'https://cdn.resfu.com/img_data/equipos/17264.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Etifaq', logo: 'https://cdn.resfu.com/img_data/equipos/110.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Damac FC', logo: 'https://cdn.resfu.com/img_data/equipos/59562.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Shabaab', logo: 'https://cdn.resfu.com/img_data/equipos/11225.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Okhdood', logo: 'https://cdn.resfu.com/img_data/equipos/119238.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Ahli', logo: 'https://cdn.resfu.com/img_data/equipos/105.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Wehda', logo: 'https://cdn.resfu.com/img_data/equipos/124.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Tai', logo: 'https://cdn.resfu.com/img_data/equipos/17265.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Hazem', logo: 'https://cdn.resfu.com/img_data/equipos/108.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Fayha', logo: 'https://cdn.resfu.com/img_data/equipos/18060.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Nasar', logo: 'https://cdn.resfu.com/img_data/equipos/11426.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Fateh', logo: 'https://cdn.resfu.com/img_data/equipos/4479.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Hilaal', logo: 'https://cdn.resfu.com/img_data/equipos/11430.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Read', logo: 'https://cdn.resfu.com/img_data/equipos/4477.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Ittihad', logo: 'https://cdn.resfu.com/img_data/equipos/11429.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Al-Riyad', logo: 'https://cdn.resfu.com/img_data/equipos/17271.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Rd Gongo', logo: 'https://cdn.resfu.com/img_data/equipos/11591.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'South Africa', logo: 'https://cdn.resfu.com/img_data/equipos/3815.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Ivory Coast', logo: 'https://cdn.resfu.com/img_data/equipos/3795.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Nigeria', logo: 'https://cdn.resfu.com/img_data/equipos/3785.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Qatar', logo: 'https://cdn.resfu.com/img_data/equipos/3799.png?size=120x&lossy=1&ext=jpeg' },
+  { name: 'Jordan', logo: 'https://cdn.resfu.com/img_data/equipos/5480.png?size=120x&lossy=1&ext=jpeg' }
+
+  
+];
+
+
+
+
+// Function to display matching teams and logos
+function displayMatchingTeams(inputId, listId) {
+  const input = document.getElementById(inputId);
+  const list = document.getElementById(listId);
+
+  input.addEventListener('input', function() {
+    const inputValue = input.value.toLowerCase();
+    const matchingTeams = teams.filter(team => team.name.toLowerCase().startsWith(inputValue));
+
+    list.innerHTML = '';
+
+    matchingTeams.forEach(team => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<img src="${team.logo}" alt="${team.name}" width="50" height="50"> ${team.name}`;
+      listItem.addEventListener('click', function() {
+        input.value = team.name;
+        // You can also auto-fill the logo here if needed
+      });
+      list.appendChild(listItem);
+    });
+  });
+}
+
+// Call the function for team 1 input field
+displayMatchingTeams('team1Name', 'team1List');
+
+// Call the function for team 2 input field
+displayMatchingTeams('team2Name', 'team2List');
+
+
+function displayMatchingTeams(inputId, logoInputId, listId) {
+  const input = document.getElementById(inputId);
+  const logoInput = document.getElementById(logoInputId);
+  const list = document.getElementById(listId);
+
+  input.addEventListener('input', function() {
+    const inputValue = input.value.toLowerCase();
+    const matchingTeams = teams.filter(team => team.name.toLowerCase().startsWith(inputValue));
+
+    list.innerHTML = '';
+
+    matchingTeams.forEach(team => {
+      const listItem = document.createElement('li');
+      listItem.innerHTML = `<img src="${team.logo}" alt="${team.name}" width="30" height="30"> ${team.name}`;
+      listItem.addEventListener('click', function() {
+        input.value = team.name;
+        logoInput.value = team.logo;
+        list.innerHTML = ''; // Clear the list
+        list.appendChild(listItem); // Add the selected item back to the list
+      });
+      list.appendChild(listItem);
+    });
+  });
+}
+
+// Call the function for team 1 input field and logo input field
+displayMatchingTeams('team1Name', 'team1Logo', 'team1List');
+
+// Call the function for team 2 input field and logo input field
+displayMatchingTeams('team2Name', 'team2Logo', 'team2List');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </script>
 
 
